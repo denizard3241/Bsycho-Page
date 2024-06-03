@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./Js/script.js" defer></script>
+    <title>Bsycho</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .personagem {
+            width: 280px;
+            position: absolute;
+            bottom: 0;
+            transition: transform 0.3s ease; /* Adiciona uma transição suave ao movimento do personagem */
+        }
+
+        .jump {
+            animation: jump 500ms ease-out;
+        }
+
+        .move-left {
+            /* Adicione aqui o estilo para a animação de movimento para a esquerda */
+        }
+
+        .move-right {
+            /* Adicione aqui o estilo para a animação de movimento para a direita */
+        }
+
+        .game-board {
+            width: 80%;
+            height: 500px;
+            border: 1px solid #333;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 15px solid brown;
+            background-image: url('https://i.pinimg.com/originals/e8/99/f8/e899f8cc9ee082c8743abdfe7d66fa5b.gif');
+            background-size: cover; /* Ajusta a imagem de fundo para cobrir completamente o elemento pai */
+            background-position: center; /* Centraliza a imagem de fundo */
+        }
+
+        .bloco {
+            position: absolute; 
+            bottom: 0;
+            width: 80px;
+            animation: bloco-animation 2s infinite linear;
+        }
+
+        @keyframes jump {
+            0% {
+                bottom: 0;
+            }
+            50% {
+                bottom: 300px;
+            }
+            100% {
+                bottom: 0;
+            }
+        }
+
+        @keyframes bloco-animation {
+            from {
+                right: -80px;
+            }
+            to {
+                right: 100%
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-board">
+        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5fe34483-7c95-45b8-bd41-3b16d399164c/ddayouk-17b66044-3708-4c68-9862-5ae422958ec4.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVmZTM0NDgzLTdjOTUtNDViOC1iZDQxLTNiMTZkMzk5MTY0Y1wvZGRheW91ay0xN2I2NjA0NC0zNzA4LTRjNjgtOTg2Mi01YWU0MjI5NThlYzQuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ZuIhhYt1IRgthdiU3f8SEltw8GT-cRO9gccMwW8E6lE" class="bloco">
+        <img src="https://opengameart.org/sites/default/files/05%20zx%2001.gif" class="personagem">
+        <!-- Adicione mais elementos img aqui para representar outras animações do personagem -->
+    </div>
+
+    <script>
+        const personagem = document.querySelector('.personagem');
+
+        const jump = () => {
+            personagem.classList.add('jump');
+
+            setTimeout(() => {
+                personagem.classList.remove('jump');
+            }, 500);
+        }
+
+        const moveLeft = () => {
+            const currentPosition = parseInt(window.getComputedStyle(personagem).getPropertyValue('left'));
+            personagem.style.left = (currentPosition - 10) + 'px'; // Ajuste a velocidade de movimento para a esquerda
+            personagem.classList.add('move-left'); // Adiciona a classe de movimento para a esquerda
+            setTimeout(() => {
+                personagem.classList.remove('move-left'); // Remove a classe de movimento para a esquerda após um tempo
+            }, 300);
+        }
+
+        const moveRight = () => {
+            const currentPosition = parseInt(window.getComputedStyle(personagem).getPropertyValue('left'));
+            personagem.style.left = (currentPosition + 10) + 'px'; // Ajuste a velocidade de movimento para a direita
+            personagem.classList.add('move-right'); // Adiciona a classe de movimento para a direita
+            setTimeout(() => {
+                personagem.classList.remove('move-right'); // Remove a classe de movimento para a direita após um tempo
+            }, 300);
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === ' ') jump(); // Salto
+            if (event.key === 'ArrowLeft') moveLeft(); // Movimento para a esquerda
+            if (event.key === 'ArrowRight') moveRight(); // Movimento para a direita
+        });
+    </script>
+</body>
+</html>

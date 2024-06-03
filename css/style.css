@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.personagem {
+    width: 280px;
+    position: absolute;
+    bottom: 0;
+    transition: transform 0.3s ease; /* Adiciona uma transição suave ao movimento do personagem */
+}
+
+.jump {
+    animation: jump 500ms ease-out;
+}
+
+.move-left {
+    /* Adicione aqui o estilo para a animação de movimento para a esquerda */
+}
+
+.move-right {
+    /* Adicione aqui o estilo para a animação de movimento para a direita */
+}
+
+.game-board {
+    width: 80%;
+    height: 500px;
+    border: 1px solid #333;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 15px solid brown;
+    background-image: url('https://i.pinimg.com/originals/e8/99/f8/e899f8cc9ee082c8743abdfe7d66fa5b.gif');
+    background-size: cover; /* Ajusta a imagem de fundo para cobrir completamente o elemento pai */
+    background-position: center; /* Centraliza a imagem de fundo */
+}
+
+.bloco {
+    position: absolute; 
+    bottom: 0;
+    width: 80px;
+    animation: bloco-animation 2s infinite linear;
+}
+
+@keyframes jump {
+    0% {
+        bottom: 0;
+    }
+    50% {
+        bottom: 300px;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+@keyframes bloco-animation {
+    from {
+        right: -80px;
+    }
+    to {
+        right: 100%
+    }
+}
